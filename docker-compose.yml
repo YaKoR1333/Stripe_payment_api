@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    container_name: payment_db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=dbpass
+      - POSTGRES_USER=Daniil
+      - POSTGRES_DB=Payment_db
+    expose:
+      - 5432
+    networks:
+      - default
+
+  stripe_payment:
+    build: .
+    container_name: stripe_payment
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/usr/src/stripe_payment
+    ports:
+      - "8000:8000"
+    environment:
+    - DJANGO_SECRET_KEY=z=n!h3#^u8ep-&eez%f7m2(ywxsu7i@-o*u8b#0_-swsu!k@3c
+    - PAYMENT_HOST=db
+    - PAYMENT_PASSWORD=dbpass
+    - PAYMENT_PORT=5432
+    - PAYMENT_USER=Daniil
+    - PAYMENT_NAME=Payment_db
+    - STRIPE_PUBLIC_KEY=pk_test_51M7LIcGi0HVfSSC3lNMzhbjXmdORrhkwcoW1l37ogXFvFB8MBUULW9gxSWak4myIxl6NYTQaXqHxC5FB2JhcgKGK00dNlC6WTW
+    - STRIPE_SECRET_KEY=sk_test_51M7LIcGi0HVfSSC32EkUWbGKTP9wZfFktcM85SNzRC99NL1TCqP88Vowig5HHjfwueqZYK7He9z5tLlotzSfmnCR00DtV4LwBo
+    depends_on:
+      - db
+volumes:
+  postgres-data:
