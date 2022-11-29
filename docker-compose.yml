@@ -7,9 +7,9 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=dbpass
-      - POSTGRES_USER=Daniil
-      - POSTGRES_DB=Payment_db
+      - POSTGRES_PASSWORD=
+      - POSTGRES_USER=
+      - POSTGRES_DB=
     expose:
       - 5432
     networks:
@@ -24,14 +24,14 @@ services:
     ports:
       - "8000:8000"
     environment:
-    - DJANGO_SECRET_KEY=z=n!h3#^u8ep-&eez%f7m2(ywxsu7i@-o*u8b#0_-swsu!k@3c
-    - PAYMENT_HOST=db
-    - PAYMENT_PASSWORD=dbpass
-    - PAYMENT_PORT=5432
-    - PAYMENT_USER=Daniil
-    - PAYMENT_NAME=Payment_db
-    - STRIPE_PUBLIC_KEY=pk_test_51M7LIcGi0HVfSSC3lNMzhbjXmdORrhkwcoW1l37ogXFvFB8MBUULW9gxSWak4myIxl6NYTQaXqHxC5FB2JhcgKGK00dNlC6WTW
-    - STRIPE_SECRET_KEY=sk_test_51M7LIcGi0HVfSSC32EkUWbGKTP9wZfFktcM85SNzRC99NL1TCqP88Vowig5HHjfwueqZYK7He9z5tLlotzSfmnCR00DtV4LwBo
+    - DJANGO_SECRET_KEY=z=
+    - PAYMENT_HOST=
+    - PAYMENT_PASSWORD=
+    - PAYMENT_PORT=
+    - PAYMENT_USER=
+    - PAYMENT_NAME=
+    - STRIPE_PUBLIC_KEY=
+    - STRIPE_SECRET_KEY=
     depends_on:
       - db
 volumes:
