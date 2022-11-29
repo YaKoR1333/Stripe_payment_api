@@ -24,7 +24,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-    - DJANGO_SECRET_KEY=z=
+    - DJANGO_SECRET_KEY=
     - PAYMENT_HOST=
     - PAYMENT_PASSWORD=
     - PAYMENT_PORT=
